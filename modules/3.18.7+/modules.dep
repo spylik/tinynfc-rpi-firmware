@@ -102,13 +102,6 @@ kernel/crypto/async_tx/async_xor.ko: kernel/crypto/async_tx/async_tx.ko kernel/c
 kernel/crypto/async_tx/async_pq.ko: kernel/crypto/async_tx/async_xor.ko kernel/crypto/async_tx/async_tx.ko kernel/crypto/xor.ko kernel/lib/raid6/raid6_pq.ko
 kernel/crypto/async_tx/async_raid6_recov.ko: kernel/crypto/async_tx/async_tx.ko kernel/lib/raid6/raid6_pq.ko
 kernel/drivers/gpio/gpio-arizona.ko:
-kernel/drivers/video/console/fbcon.ko: kernel/drivers/video/console/bitblit.ko kernel/drivers/video/console/fbcon_rotate.ko kernel/drivers/video/console/fbcon_ccw.ko kernel/drivers/video/console/fbcon_ud.ko kernel/drivers/video/console/fbcon_cw.ko kernel/drivers/video/console/softcursor.ko kernel/lib/fonts/font.ko
-kernel/drivers/video/console/bitblit.ko: kernel/drivers/video/console/fbcon_rotate.ko kernel/drivers/video/console/fbcon_ccw.ko kernel/drivers/video/console/fbcon_ud.ko kernel/drivers/video/console/fbcon_cw.ko kernel/drivers/video/console/softcursor.ko
-kernel/drivers/video/console/softcursor.ko:
-kernel/drivers/video/console/fbcon_rotate.ko: kernel/drivers/video/console/fbcon_ccw.ko kernel/drivers/video/console/fbcon_ud.ko kernel/drivers/video/console/fbcon_cw.ko kernel/drivers/video/console/softcursor.ko
-kernel/drivers/video/console/fbcon_cw.ko: kernel/drivers/video/console/softcursor.ko
-kernel/drivers/video/console/fbcon_ud.ko: kernel/drivers/video/console/softcursor.ko
-kernel/drivers/video/console/fbcon_ccw.ko: kernel/drivers/video/console/softcursor.ko
 kernel/drivers/video/backlight/lcd.ko:
 kernel/drivers/video/fbdev/core/sysfillrect.ko:
 kernel/drivers/video/fbdev/core/syscopyarea.ko:
@@ -250,6 +243,10 @@ kernel/drivers/net/phy/libphy.ko:
 kernel/drivers/net/phy/mdio-bitbang.ko: kernel/drivers/net/phy/libphy.ko
 kernel/drivers/net/tun.ko:
 kernel/drivers/net/veth.ko:
+kernel/drivers/net/can/spi/mcp251x.ko: kernel/drivers/net/can/can-dev.ko
+kernel/drivers/net/can/vcan.ko:
+kernel/drivers/net/can/slcan.ko:
+kernel/drivers/net/can/can-dev.ko:
 kernel/drivers/net/irda/irda-usb.ko: kernel/net/irda/irda.ko kernel/lib/crc-ccitt.ko
 kernel/drivers/net/irda/stir4200.ko: kernel/net/irda/irda.ko kernel/lib/crc-ccitt.ko
 kernel/drivers/net/irda/mcs7780.ko: kernel/net/irda/irda.ko kernel/lib/crc-ccitt.ko
@@ -1319,6 +1316,10 @@ kernel/net/appletalk/appletalk.ko: kernel/net/802/psnap.ko kernel/net/llc/llc.ko
 kernel/net/netrom/netrom.ko: kernel/net/ax25/ax25.ko
 kernel/net/rose/rose.ko: kernel/net/ax25/ax25.ko
 kernel/net/ax25/ax25.ko:
+kernel/net/can/can.ko:
+kernel/net/can/can-raw.ko: kernel/net/can/can.ko
+kernel/net/can/can-bcm.ko: kernel/net/can/can.ko
+kernel/net/can/can-gw.ko: kernel/net/can/can.ko
 kernel/net/irda/irda.ko: kernel/lib/crc-ccitt.ko
 kernel/net/irda/irlan/irlan.ko: kernel/net/irda/irda.ko kernel/lib/crc-ccitt.ko
 kernel/net/irda/irnet/irnet.ko: kernel/drivers/net/ppp/ppp_generic.ko kernel/drivers/net/slip/slhc.ko kernel/net/irda/irda.ko kernel/lib/crc-ccitt.ko
@@ -1353,4 +1354,3 @@ kernel/lib/ts_kmp.ko:
 kernel/lib/ts_bm.ko:
 kernel/lib/ts_fsm.ko:
 kernel/lib/lru_cache.ko:
-kernel/lib/fonts/font.ko:

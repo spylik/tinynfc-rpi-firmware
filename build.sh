@@ -2,6 +2,8 @@
 
 # SmartNFC firmware builder for Raspberry Pi (RPi model B+)
 # (c) 2015 Oleksii Semilietov
+#
+# To update firmware use "sudo REPO_URI=https://github.com/spylik/tinynfc-rpi-firmware rpi-update"
 
 FOLDER_TREE=${FOLDER_TREE:-"/usr/src/raspberry"}
 
@@ -40,12 +42,9 @@ getOrUpdateFirmwareTree() {
 
 	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware/vc/hardfp/opt/
 	cp -r $FOLDER_TREE/firmware/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware/vc/softfp/opt/
-	#currently we copy sdk from hardfp folder
+	#currently we copy sdk from hardfp folder (softfp used in old version)
 	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/include $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/
 	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/src $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/
-
-
-	
 }
 # end of updating firmware directory tree
 
