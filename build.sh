@@ -30,7 +30,6 @@ getOrUpdateFirmwareTree() {
 	fi
 	#copy data from current firmware boot folder to our firmware folder
 	cp -r /usr/src/raspberry/firmware/boot/* /usr/src/raspberry/tinynfc-rpi-firmware/
-	cp -r /usr/src/raspberry/firmware/opt/vc /usr/src/raspberry/tinynfc-rpi-firmware/
 }
 # end of updating firmware directory tree
 
@@ -40,9 +39,9 @@ buildKernelAndModules() {
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 	cp $FOLDER_TREE/linux/arch/arm/boot/Image $FOLDER_TREE/tinynfc-rpi-firmware/kernel.img
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware modules
-	rm -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules
+#	rm -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware modules_install
-	cp -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules $FOLDER_TREE/
+	cp -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules $FOLDER_TREE/tinynfc-rpi-firmware/
 }
 # end of build kernel and modules
 
