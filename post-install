@@ -1,4 +1,38 @@
+FOLDER_TREE=${FOLDER_TREE:-"/home/pi"}
+
 if [ -d ${FW_REPOLOCAL}/firmware ]; then
         echo "     /lib/firmware"
         cp -R "${FW_REPOLOCAL}/firmware/"* /lib/firmware/
 fi
+
+updateAPT(){
+	echo "     running apt-get update"
+	apt-get update
+	echo "     running apt-get upgrade"
+	apt-get upgrade
+	apt-get install python-dev tcsh screen mc libssl-dev ncurses-dev
+}
+
+installPythonRC522Software() {
+	apt-get install python-rpi.gpio
+	if [ ! -d "${FOLDER_TREE}/SPI-Py" ]; then
+		cd $FOLDER_TREE
+		git clone https://github.com/lthiery/SPI-Py
+	else
+		cd $FOLDER_TREE
+		git pull
+	fi
+	cd $FOLDER_TREE/SPI-Py
+	python setup.py install
+}
+
+installErlangEnviroment() {
+	wget http://www.erlang.org/download/otp_src_17.4.tar.gz
+	tar -xzvf otp_src_17.4.tar.gz
+	cd otp_src_17.4/
+	./configure
+	make 
+	make install
+}
+
+updateAPT

@@ -16,6 +16,7 @@ getOrUpdateKernelSourceTree() {
 	if [ ! -d "${FOLDER_TREE}/linux" ]; then
 		cd $FOLDER_TREE
 		git clone --depth=1 https://github.com/raspberrypi/linux
+		cp $FOLDER_TREE/tinynfc-rpi-firmware/.config $FOLDER_TREE/linux/
 	else
 		cd $FOLDER_TREE/linux
 		git pull
