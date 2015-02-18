@@ -3,7 +3,7 @@
 # SmartNFC firmware builder for Raspberry Pi (RPi model B+)
 # (c) 2015 Oleksii Semilietov
 #
-# To update firmware use "sudo REPO_URI=https://github.com/spylik/tinynfc-rpi-firmware rpi-update"
+# To update firmware use "sudo REPO_URI=https://github.com/spylik/tinynfc-rpi-firmware-raspbian rpi-update"
 
 FOLDER_TREE=${FOLDER_TREE:-"/usr/src/raspberry"}
 
@@ -16,7 +16,7 @@ getOrUpdateKernelSourceTree() {
 	if [ ! -d "${FOLDER_TREE}/linux" ]; then
 		cd $FOLDER_TREE
 		git clone --depth=1 https://github.com/raspberrypi/linux
-		cp $FOLDER_TREE/tinynfc-rpi-firmware/.config $FOLDER_TREE/linux/
+		cp $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/.config $FOLDER_TREE/linux/
 	else
 		cd $FOLDER_TREE/linux
 		git pull
@@ -34,18 +34,18 @@ getOrUpdateFirmwareTree() {
 		git pull
 	fi
 	#copy data from current firmware boot folder to our firmware folder
-	cp -r /usr/src/raspberry/firmware/boot/* /usr/src/raspberry/tinynfc-rpi-firmware/
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware/vc/hardfp/opt/vc
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware/vc/softfp/opt/vc
+	cp -r /usr/src/raspberry/firmware/boot/* /usr/src/raspberry/tinynfc-rpi-firmware-raspbian/
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc
 	#sdk
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/include
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/src
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/include
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/src
 
-	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware/vc/hardfp/opt/
-	cp -r $FOLDER_TREE/firmware/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware/vc/softfp/opt/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/
+	cp -r $FOLDER_TREE/firmware/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/
 	#currently we copy sdk from hardfp folder (softfp used in old version)
-	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/include $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/
-	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/src $FOLDER_TREE/tinynfc-rpi-firmware/vc/sdk/opt/vc/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/include $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/src $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/
 }
 # end of updating firmware directory tree
 
@@ -54,11 +54,11 @@ buildKernelAndModulesARM6() {
 	cd $FOLDER_TREE/linux
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- oldconfig
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
-	cp $FOLDER_TREE/linux/arch/arm/boot/Image $FOLDER_TREE/tinynfc-rpi-firmware/kernel.img
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware modules
-#	rm -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules
-	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware modules_install
-	cp -r $FOLDER_TREE/tinynfc-rpi-firmware/lib/modules $FOLDER_TREE/tinynfc-rpi-firmware/
+	cp $FOLDER_TREE/linux/arch/arm/boot/Image $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/kernel.img
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware-raspbian modules
+#	rm -r $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/lib/modules
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware-raspbian modules_install
+	cp -r $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/lib/modules $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/
 }
 # end of build kernel and modules
 
