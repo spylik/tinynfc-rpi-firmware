@@ -35,14 +35,29 @@ getOrUpdateFirmwareTree() {
 	fi
 	#copy data from current firmware boot folder to our firmware folder
 	cp -r /usr/src/raspberry/firmware/boot/* /usr/src/raspberry/tinynfc-rpi-firmware-raspbian/
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc
-	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/bin
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/lib
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/LICENCE
+
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/bin
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/lib
+	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/LICENCE
+
+
 	#sdk
 	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/include
 	rm -R $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/src
 
-	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/
-	cp -r $FOLDER_TREE/firmware/opt/vc $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/bin $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/lib $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/
+	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/LICENCE $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/hardfp/opt/vc/
+
+
+	cp -r $FOLDER_TREE/firmware/opt/vc/bin $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/
+	cp -r $FOLDER_TREE/firmware/opt/vc/lib $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/
+	cp -r $FOLDER_TREE/firmware/opt/vc/LICENCE $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/softfp/opt/vc/
+
+
 	#currently we copy sdk from hardfp folder (softfp used in old version)
 	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/include $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/
 	cp -r $FOLDER_TREE/firmware/hardfp/opt/vc/src $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/vc/sdk/opt/vc/
