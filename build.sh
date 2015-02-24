@@ -49,16 +49,26 @@ getOrUpdateFirmwareTree() {
 }
 # end of updating firmware directory tree
 
-# build kernel and modules
-buildKernelAndModulesARM6() {
+buildKernelARM6() {
 	cd $FOLDER_TREE/linux
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- oldconfig
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 	cp $FOLDER_TREE/linux/arch/arm/boot/Image $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/kernel.img
+}
+
+buildModulesARM6() {
+	cd $FOLDER_TREE/linux
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- oldconfig
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware-raspbian modules
 #	rm -r $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/lib/modules
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- INSTALL_MOD_PATH=/usr/src/raspberry/tinynfc-rpi-firmware-raspbian modules_install
 	cp -r $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/lib/modules $FOLDER_TREE/tinynfc-rpi-firmware-raspbian/
+}
+
+# build kernel and modules
+buildKernelAndModulesARM6() {
+	buildKernelARM6
+	buildModulesARM6
 }
 # end of build kernel and modules
 

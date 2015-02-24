@@ -26,6 +26,11 @@ installPythonRC522Software() {
 	python setup.py install
 }
 
+createRamDisk() {
+	mkdir /mnt/ramdisk
+	mount -t tmpfs -o size=96m tmpfs /mnt/ramdisk
+}
+
 installErlangEnviroment() {
 	wget http://www.erlang.org/download/otp_src_17.4.tar.gz
 	tar -xzvf otp_src_17.4.tar.gz
@@ -33,6 +38,11 @@ installErlangEnviroment() {
 	./configure
 	make 
 	make install
+}
+
+installPythonGPSEnviroment() {
+	apt-get install gpsd gpsd-clients python-gps
+	
 }
 
 updateAPT
