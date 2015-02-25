@@ -44,5 +44,3 @@ installPythonGPSEnviroment() {
 	apt-get install gpsd gpsd-clients python-gps
 	
 }
-
-updateAPT
