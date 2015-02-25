@@ -1,4 +1,4 @@
-#/bin/bash
+#/bin/sh
 
 # SmartNFC firmware builder for Raspberry Pi (RPi model B+)
 # (c) 2015 Oleksii Semilietov
