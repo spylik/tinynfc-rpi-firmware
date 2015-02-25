@@ -802,6 +802,7 @@ alias symbol:iscsi_itt_to_task libiscsi
 alias symbol:media_device_unregister_entity media
 alias symbol:snd_soc_info_volsw_range snd_soc_core
 alias symbol:sms_board_load_modules smsmdtv
+alias symbol:spi_bitbang_stop spi_bitbang
 alias symbol:rfkill_pause_polling rfkill
 alias symbol:nf_conntrack_in nf_conntrack
 alias symbol:cfg80211_inform_bss_width_frame cfg80211
@@ -1434,6 +1435,7 @@ alias symbol:dvb_frontend_reinitialise dvb_core
 alias symbol:o2hb_check_node_heartbeating ocfs2_nodemanager
 alias symbol:cx231xx_tuner_callback cx231xx
 alias symbol:ieee80211_gtk_rekey_add mac80211
+alias symbol:spi_bitbang_setup spi_bitbang
 alias symbol:ieee80211_remove_key mac80211
 alias symbol:iscsi_session_get_param libiscsi
 alias symbol:m88ds3103_attach m88ds3103
@@ -1631,6 +1633,7 @@ alias symbol:snd_ecards_limit snd
 alias symbol:snd_pcm_hw_param_value snd_pcm
 alias symbol:snd_timer_new snd_timer
 alias symbol:ieee80211_start_rx_ba_session_offl mac80211
+alias symbol:spi_bitbang_setup_transfer spi_bitbang
 alias symbol:ath9k_cmn_process_rssi ath9k_common
 alias symbol:dib0090_gain_control dib0090
 alias symbol:hostap_setup_dev hostap
@@ -1882,6 +1885,7 @@ alias symbol:fuse_request_send_background fuse
 alias symbol:rt2x00mac_configure_filter rt2x00lib
 alias symbol:xt_unregister_target x_tables
 alias symbol:hostap_handle_sta_tx_exc hostap
+alias symbol:spi_bitbang_cleanup spi_bitbang
 alias symbol:lirc_register_driver lirc_dev
 alias symbol:v4l2_ctrl_auto_cluster videodev
 alias symbol:cfg80211_get_drvinfo cfg80211
@@ -2189,6 +2193,7 @@ alias symbol:ieee80211_queue_stopped mac80211
 alias symbol:cfg80211_reg_can_beacon cfg80211
 alias symbol:ip_tunnel_uninit ip_tunnel
 alias symbol:itd1000_attach itd1000
+alias symbol:spi_bitbang_start spi_bitbang
 alias symbol:init_cdrom_command cdrom
 alias symbol:nfc_unregister_device nfc
 alias symbol:usb_wwan_resume usb_wwan

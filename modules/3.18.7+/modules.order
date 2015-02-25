@@ -160,6 +160,8 @@ kernel/drivers/scsi/osst.ko
 kernel/drivers/scsi/sr_mod.ko
 kernel/drivers/scsi/sg.ko
 kernel/drivers/spi/spi-bcm2708.ko
+kernel/drivers/spi/spi-bitbang.ko
+kernel/drivers/spi/spi-gpio.ko
 kernel/drivers/net/hamradio/mkiss.ko
 kernel/drivers/net/hamradio/6pack.ko
 kernel/drivers/net/hamradio/yam.ko
