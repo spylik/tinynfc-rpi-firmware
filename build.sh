@@ -64,6 +64,12 @@ getOrUpdateFirmwareTree() {
 }
 # end of updating firmware directory tree
 
+makemenuconfig() {
+	cd $FOLDER_TREE/linux
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- oldconfig
+}
+
 buildKernelARM6() {
 	cd $FOLDER_TREE/linux
 	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- oldconfig
